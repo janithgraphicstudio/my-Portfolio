@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janith Graphic Studio Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff0000;
+            --secondary-color: #b82626;
+            --text-color: #f5f6fa;
+            --bg-color: #000000;
+            --card-bg: #1c1e1f;
+            --accent-color: #ff4026;
+            --light-text: #f5f6fa;
+            --dark-text: #2d3436;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #0c45ff;
+            --secondary-color: #008cff;
+            --text-color: #2d3436;
+            --bg-color: #f5f6fa;
+            --card-bg: #dfe6e9;
+            --accent-color: #7d43e8;
+            --light-text: #f5f6fa;
+            --dark-text: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(144, 192, 255, 0.185);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .bg-animation div:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation-delay: 0s;
+            width: 80px;
+            height: 80px;
+        }
+
+        .bg-animation div:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            width: 120px;
+            height: 120px;
+        }
+
+        .bg-animation div:nth-child(3) {
+            top: 40%;
+            left: 40%;
+            animation-delay: 4s;
+            width: 100px;
+            height: 100px;
+        }
+
+        .bg-animation div:nth-child(4) {
+            top: 70%;
+            left: 30%;
+            animation-delay: 6s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .bg-animation div:nth-child(5) {
+            top: 10%;
+            left: 70%;
+            animation-delay: 8s;
+            width: 90px;
+            height: 90px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Styles */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 2rem 0;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* Navigation */
+        .sticky-nav {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(45, 52, 54, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .sticky-nav.visible {
+            top: 0;
+        }
+
+        .nav-logo {
+            position: absolute;
+            left: 2rem;
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(108, 92, 231, 0.3), transparent 200px);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-card:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .portfolio-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-btn:hover::after {
+            opacity: 1;
+        }
+
+        .portfolio-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pricing Section */
+        .pricing-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .pricing-header:hover {
+            background-color: var(--accent-color);
+        }
+
+        .pricing-header i {
+            transition: var(--transition);
+        }
+
+        .pricing-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .pricing-content {
+            background-color: var(--card-bg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .pricing-content-inner {
+            padding: 1.5rem;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-option:last-child {
+            border-bottom: none;
+        }
+
+ /* About Section */
+ .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .about-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .info-section {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .info-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .skill:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .cv-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cv-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+footer {
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #bdc3c7;
+}
+
+       /* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .sticky-nav {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                height: 30px;
+                left: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-container {
+                text-align: center;
+            }
+
+            .info-section {
+                text-align: center;
+            }
+
+            .info-title::after {
+                left: 25%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-text {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .nav-logo {
+                position: static;
+                margin-bottom: 0.5rem;
+            }
+
+            .sticky-nav {
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav" id="stickyNav">
+        <img src="logo.png" alt="JGS Logo" class="nav-logo">
+        <ul>
+            <li><a href="#portfolio">Example</a></li>
+            <li><a href="#pricing">Price</a></li>
+            <li><a href="#about">About me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <img src="Profile.png" alt="Janith Profile" class="profile-img">
+        <h1 class="welcome-text">Welcome To </h1>
+        <h1 class="welcome-text">JANITH GRAPHIC STUDIO Portfolio</h1>
+        <div class="scroll-down" id="scrollDown">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 class="section-title">Our Portfolio</h2>
+        <div class="portfolio-grid">
+            <!-- Logo Design -->
+            <div class="portfolio-card">
+                <img src="1.jpg" alt="Logo Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Logo Design</h3>
+                    <p class="portfolio-description">Professional logo designs that represent your brand identity. Unique and memorable logos tailored to your business needs.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/logo-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Social Media Cover Image -->
+            <div class="portfolio-card">
+                <img src="2.jpg" alt="Social Media Cover Image" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Social Media Cover Design</h3>
+                    <p class="portfolio-description">Eye-catching cover images for your social media profiles. Perfect for Facebook, Twitter, LinkedIn and more.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/social-media-cover-image" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Social Media Post Design -->
+            <div class="portfolio-card">
+                <img src="3.jpg" alt="Social Media Post Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Social Media Post Design</h3>
+                    <p class="portfolio-description">Engaging social media posts to boost your online presence. Designed to increase engagement and followers.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/social-media-post-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Cover Page Design -->
+            <div class="portfolio-card">
+                <img src="4.jpg" alt="Cover Page Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Cover Page Design</h3>
+                    <p class="portfolio-description">Professional cover pages for books, reports, and magazines. Make a great first impression with our designs.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/cover-page-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Leaflet Design -->
+            <div class="portfolio-card">
+                <img src="5.jpg" alt="Leaflet Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Leaflet Design</h3>
+                    <p class="portfolio-description">Effective leaflet designs for your marketing campaigns. Attract customers with visually appealing leaflets.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/leaflet-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Banner Design -->
+            <div class="portfolio-card">
+                <img src="6.jpg" alt="Banner Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Banner Design</h3>
+                    <p class="portfolio-description">High-quality banner designs for web and print. Perfect for advertisements, events, and promotions.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/banner-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- YouTube Thumbnail Design -->
+            <div class="portfolio-card">
+                <img src="7.jpg" alt="YouTube Thumbnail Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">YouTube Thumbnail Design</h3>
+                    <p class="portfolio-description">Click-worthy YouTube thumbnails that increase views. Designed to stand out in search results.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/youtube-thumbnail-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Business Card Design -->
+            <div class="portfolio-card">
+                <img src="8.jpg" alt="Business Card Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Business Card Design</h3>
+                    <p class="portfolio-description">Professional business cards that make an impression. High-quality designs that represent your brand.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/business-card-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Package Design -->
+            <div class="portfolio-card">
+                <img src="9.jpg" alt="Package Design" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Package Design</h3>
+                    <p class="portfolio-description">Creative package designs for your products. Stand out on shelves with our unique packaging solutions.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/package-design" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+
+            <!-- Invitation Card -->
+            <div class="portfolio-card">
+                <img src="10.jpg" alt="Invitation Card" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Invitation Card</h3>
+                    <p class="portfolio-description">Elegant invitation cards for weddings, parties and events. Custom designs for your special occasions.</p>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/invitation-card" target="_blank" class="portfolio-btn">Get Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <h2 class="section-title">Our Pricing</h2>
+        <div class="pricing-container">
+            <!-- Logo Design Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Logo Design</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>2 Color Normal</span>
+                            <span>Rs 2500/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Full Color Co. Brand</span>
+                            <span>Rs 5000 - 15,000/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 1500/= (before charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Post Design Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Social Media Post Design</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>2 Color Normal</span>
+                            <span>Rs 800/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Full Color All in One</span>
+                            <span>Rs 1200/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 300/= (before charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner Design Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Banner Design</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>4 Color Quality</span>
+                            <span>Rs 1000/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>High Quality</span>
+                            <span>Rs 1200/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 200/= (pre of Charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Cover Photo Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Social Media Cover Photo</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>2 Color Normal</span>
+                            <span>Rs 800/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Full Color High Quality</span>
+                            <span>Rs 1200/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 100/= (pre of Charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Cover Page Design Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Book Cover Page Design</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>2 Color Normal</span>
+                            <span>Rs 800/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Full Color High Quality</span>
+                            <span>Rs 1200/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 300/= (before charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package & Label Design Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Package & Label Design</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>2 Color Normal</span>
+                            <span>Rs 800/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Full Color High Quality</span>
+                            <span>Rs 1200/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>with Ai, PSD full file</span>
+                            <span>Rs 300/= (before charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Editing Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Photo Editing</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>Standard Price</span>
+                            <span>Rs 50 - 1500/=</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Editing (Normal) Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Video Editing (Normal)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>Standard Price</span>
+                            <span>Rs 1000 - 15,000/=</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AP Software Development Service Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>AP Software Development Service</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>Standard Price</span>
+                            <span>Rs 3500 - 30,000/=</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technically Shaport Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Technically Shaport</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>Standard</span>
+                            <span>FREE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Computer Repairing Pricing -->
+            <div class="pricing-item">
+                <div class="pricing-header">
+                    <span>Computer Repairing</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-content-inner">
+                        <div class="price-option">
+                            <span>Standard Price</span>
+                            <span>Rs 1000 - 15,000/=</span>
+                        </div>
+                        <div class="price-option">
+                            <span>Additional Charge</span>
+                            <span>Rs 300/= (before charge)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <img src="my.png" alt="Janith Herath" class="about-img">
+            <div class="about-content">
+                <h3 class="about-title">Hi..I'm Janitha Athma Herath</h3>
+                <p class="about-subtitle">PROFESSIONAL ARTIST & GRAPHIC DESIGNER</p>
+                
+                <div class="info-section">
+                    <h4 class="info-title">PERSONAL INFORMATION</h4>
+                    <div class="info-item">Name - H.M Janitha Athma Herath</div>
+                    <div class="info-item">Country - Sri Lanka</div>
+                    <div class="info-item">District - Kurunegala</div>
+                    <div class="info-item">Province - North Western Province</div>
+                    <div class="info-item">Language - Sinhala, English</div>
+                    <div class="info-item">Job - Artist & Graphic Designer</div>
+                </div>
+                
+                <div class="info-section">
+                    <h4 class="info-title">EXPERIENCE</h4>
+                    <div class="info-item">Janith Graphic Studio 2017 - 2023<br>Director ( Graphic Designer )</div>
+                    <div class="info-item">JGS Advertising 2017 - 2023<br>CEO</div>
+                </div>
+                
+                <div class="info-section">
+                    <h4 class="info-title">PRO SKILLS</h4>
+                    <div class="skills-container">
+                        <div class="skill">Adobe Photoshop</div>
+                        <div class="skill">Adobe Illustrator</div>
+                        <div class="skill">Adobe Audition</div>
+                        <div class="skill">CorelDraw</div>
+                        <div class="skill">Video Editing</div>
+                        <div class="skill">AP Software Developing</div>
+                        <div class="skill">Computer IT Engineering</div>
+                    </div>
+                </div>
+                
+                <a href="http://www.jga.com" target="_blank" class="cv-btn">View Full CV</a>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/janithgraphicstudio.eblog?_rdc=1&_rdr#"  target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/channel/UCihEwYPV1pACRyi0fJlboRQ"  target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.google.com/url?q=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fjanitha-athma-herath-a7a3ba271%2F&sa=D&sntz=1&usg=AOvVaw2DD1U0Jya9ZOQS0xgFF-Mc"  target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://sites.google.com/view/janithgraphicstudio/home"  target="_blank" class="social-link"><i class="fas fa-globe"></i></a>
+                </div>
+                
+                <div class="footer">
+                    Design by : JGS Lanka Co.™ JANITH GRAPHIC STUDIO | © 2025 | Sri Lanka.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://www.whatsapp.com/catalog/94702001859/" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        let isDark = true;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.setAttribute('data-theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            isDark = false;
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (isDark) {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'dark');
+            }
+            isDark = !isDark;
+        });
+
+        // Sticky Navigation
+        const stickyNav = document.getElementById('stickyNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                stickyNav.classList.add('visible');
+            } else {
+                stickyNav.classList.remove('visible');
+            }
+        });
+
+        // Scroll Down Button
+        const scrollDown = document.getElementById('scrollDown');
+        scrollDown.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Pricing Accordion
+        const pricingHeaders = document.querySelectorAll('.pricing-header');
+        pricingHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const isActive = header.classList.contains('active');
+                
+                // Close all other accordions
+                pricingHeaders.forEach(h => {
+                    if (h !== header) {
+                        h.classList.remove('active');
+                        h.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+                
+                // Toggle current accordion
+                if (!isActive) {
+                    header.classList.add('active');
+                    const content = header.nextElementSibling;
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    header.classList.remove('active');
+                    header.nextElementSibling.style.maxHeight = null;
+                }
+            });
+        });
+
+        // Portfolio Card Lighting Effect
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        portfolioCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // Open first pricing item by default
+        if (pricingHeaders.length > 0) {
+            pricingHeaders[0].click();
+        }
+    </script>
+</body>
+</html>
