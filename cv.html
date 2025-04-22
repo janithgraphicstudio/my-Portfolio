@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.M.J.A Herath - Artist & Graphic Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #1e272e;
+            --darker: #0f1519;
+            --light: #f5f6fa;
+            --gray: #808e9b;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .qr-code:hover {
+            transform: scale(1.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(30, 39, 46, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: var(--dark);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        th {
+            color: var(--primary);
+            font-weight: 600;
+            width: 30%;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--dark);
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .facebook:hover {
+            background: #1877f2;
+        }
+        
+        .youtube:hover {
+            background: #ff0000;
+        }
+        
+        .telegram:hover {
+            background: #0088cc;
+        }
+        
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .education-item {
+            background: rgba(30, 39, 46, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .education-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .education-year {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-item {
+            margin-bottom: 2rem;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .experience-date {
+            color: var(--gray);
+        }
+        
+        .experience-description {
+            color: var(--gray);
+        }
+        
+        .certificates-list {
+            list-style-type: none;
+        }
+        
+        .certificate-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .certificate-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <img src="my.png" alt="H.M.J.A Herath" class="profile-img">
+                <div>
+                    <h1>H.M.J.A HERATH</h1>
+                    <h2>Artist & Graphic Designer</h2>
+                </div>
+            </div>
+            <img src="qr.png" alt="QR Code" class="qr-code pulse">
+        </header>
+        
+        <section style="animation-delay: 0.1s">
+            <h2>CONTACT ME</h2>
+            <div class="contact-info">
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>No. 646/1<br>Wendesiwaththa, Hettipola</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+94785873661">078 587 3661</a><br>
+                            <a href="tel:+94759995181">075 999 5181</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h3>Whatsapp</h3>
+                            <p><a href="https://wa.me/94702001859">070 200 1859</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>E-Mail Address</h3>
+                            <p><a href="mailto:janithaethmajch@gmail.com">janithaethmajch@gmail.com</a><br>
+                            <a href="mailto:janithgraphicstudio.e@gmail.com">janithgraphicstudio.e@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="animation-delay: 0.2s">
+            <h2>EXTRA SKILLS</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>PHOTOSHOP</span>
+                            <span>P5</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>ILLUSTRATOR</span>
+                            <span>Ai</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>CORELDRAW</span>
+                            <span>VIDEO EDITING Pr</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>COMPUTER HARDWARE</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 2rem;">FOLLOW ME</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/janithgraphicstudio.eblog?_rdc=1&_rdr#" target="_blank" class="social-link facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCihEwYPV1pACRyi0fJlboRQ" target="_blank" class="social-link youtube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://sites.google.com/view/janithgraphicstudio/home" target="_blank" class="social-link telegram" target="_blank">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </section>
+        
+        <section style="animation-delay: 0.3s">
+            <h2>PERSONAL INFORMATION</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>H.M Janitha Athma Herath</td>
+                </tr>
+                <tr>
+                    <th>Full Name</th>
+                    <td>Herath Mudiyanselage Janitha Athma Herath</td>
+                </tr>
+                <tr>
+                    <th>Birthday</th>
+                    <td>22 October, 2000</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>Male</td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>Sri Lanka</td>
+                </tr>
+                <tr>
+                    <th>District</th>
+                    <td>Kurunegala</td>
+                </tr>
+                <tr>
+                    <th>Police Station</th>
+                    <td>Hettipola</td>
+                </tr>
+                <tr>
+                    <th>Province</th>
+                    <td>North Western Province</td>
+                </tr>
+                <tr>
+                    <th>School Attended</th>
+                    <td>Mahindodaya National College Hettipola</td>
+                </tr>
+                <tr>
+                    <th>Languages</th>
+                    <td>Sinhala, English</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section style="animation-delay: 0.4s">
+            <h2>EDUCATIONAL QUALIFICATIONS</h2>
+            <div class="education-container">
+                <div class="education-item">
+                    <h3 class="education-title">Ordinary Level (O/L) - 2016</h3>
+                    <p>Sinhala - C<br>
+                    History - C<br>
+                    Buddhism - C<br>
+                    Arts - C<br>
+                    Electronic - C<br>
+                    Mathematics - S<br>
+                    English - S<br>
+                    Citizen education Science - S</p>
+                </div>
+                <div class="education-item">
+                    <h3 class="education-title">Advanced Level (A/L) - 2019</h3>
+                    <p>History - C<br>
+                    Sinhala - C<br>
+                    Media - C</p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="animation-delay: 0.5s">
+            <h2>OTHER EDUCATIONAL QUALIFICATIONS</h2>
+            <ul class="certificates-list">
+                <li class="certificate-item">NVQ Level 4 Certificate Course on Computer <strong>Graphic Designer</strong></li>
+                <li class="certificate-item">Basic Certificate Course on Productivity & Quality <strong>Management</strong> (B grade Pass)</li>
+                <li class="certificate-item">Certificate Course on National Youth Corps (Rc.No PW192051)</li>
+                <li class="certificate-item">Certificate Course on National Youth Corps Quiz Competition</li>
+                <li class="certificate-item">Certificate Course on Adventure Based Training (ABT Center Naula)</li>
+                <li class="certificate-item">Thorough knowledge of computer repair and computer technology</li>
+                <li class="certificate-item">Worked for a year at the Kuwait KOC camp</li>
+                <li class="certificate-item">Certified firefighting training has been received in Kuwait</li>
+            </ul>
+        </section>
+        
+        <section style="animation-delay: 0.6s">
+            <h2>EXPERIENCE</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Janith Graphic Studio</h3>
+                    <span class="experience-date">2017 - 2023</span>
+                </div>
+                <p class="experience-description">Director (Graphic Designer)</p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Kuwait KOC camp</h3>
+                    <span class="experience-date">2023 - 2024</span>
+                </div>
+                <p class="experience-description">13.11.2023 - 01.12.2024</p>
+            </div>
+        </section>
+        
+        <section style="animation-delay: 0.7s; text-align: center;">
+            <p>Google My Business Premium Membership</p>
+        </section>
+    </div>
+    
+    <script>
+        // Animate skill bars on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const animateOnScroll = () => {
+                skillBars.forEach(bar => {
+                    const rect = bar.parentElement.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 50) {
+                        bar.style.width = bar.style.width;
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>
