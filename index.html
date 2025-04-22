@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #ff0000;
-            --secondary-color: #b82626;
-            --text-color: #f5f6fa;
+            --primary-color: #460909;
+            --secondary-color: #ff0000;
+            --text-color: #700d0d;
             --bg-color: #000000;
             --card-bg: #1c1e1f;
             --accent-color: #ff4026;
@@ -19,14 +19,14 @@
         }
 
         [data-theme="light"] {
-            --primary-color: #0c45ff;
-            --secondary-color: #008cff;
-            --text-color: #2d3436;
+            --primary-color: #0f0e5a;
+            --secondary-color: #006eff;
+            --text-color: #332574;
             --bg-color: #f5f6fa;
             --card-bg: #dfe6e9;
-            --accent-color: #7d43e8;
-            --light-text: #f5f6fa;
-            --dark-text: #2d3436;
+            --accent-color: #2e0f5f;
+            --light-text: #ffffff;
+            --dark-text: #dcdedf;
         }
 
         * {
@@ -37,7 +37,8 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background: url(hihg.png) no-repeat center center fixed; 
+            background-size: cover;
             color: var(--text-color);
             transition: var(--transition);
             overflow-x: hidden;
@@ -128,6 +129,9 @@
         }
 
         .profile-img {
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             width: 200px;
             height: 200px;
             border-radius: 50%;
@@ -182,7 +186,9 @@
             top: -100px;
             left: 0;
             width: 100%;
-            background-color: rgba(45, 52, 54, 0.95);
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             display: flex;
@@ -299,15 +305,16 @@
         }
 
         .portfolio-card {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             border-radius: 15px;
             overflow: hidden;
             transition: var(--transition);
             position: relative;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-
-        .portfolio-card:hover {
+             .portfolio-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
@@ -354,7 +361,7 @@
             display: inline-block;
             padding: 0.8rem 1.5rem;
             background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: white;
+            color: rgb(255, 255, 255);
             border: none;
             border-radius: 50px;
             font-weight: 600;
@@ -404,8 +411,10 @@
         }
 
         .pricing-header {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            color: rgb(39, 10, 92);
             padding: 1rem 1.5rem;
             cursor: pointer;
             display: flex;
@@ -428,7 +437,9 @@
         }
 
         .pricing-content {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
@@ -458,6 +469,9 @@
         }
 
         .about-img {
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             width: 250px;
             height: 250px;
             border-radius: 50%;
@@ -520,8 +534,10 @@
         }
 
         .skill {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            color: rgb(51, 10, 99);
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
@@ -563,8 +579,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
+            color: rgb(9, 10, 68);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -613,7 +628,7 @@ footer p {
 
 .whatsapp-btn:hover {
     transform: scale(1.1);
-    background-color: #128C7E;
+    background-color: #063f38;
 }
 
         @keyframes pulse {
@@ -758,6 +773,12 @@ footer p {
         <h1 class="welcome-text">JANITH GRAPHIC STUDIO Portfolio</h1>
         <div class="scroll-down" id="scrollDown">
             <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="about-content">
+            <h2>JGS LANKA Co.</h2>
+            <p>Welcome to Janith Graphic Studio, your go-to destination for high quality graphic design,</p>
+            <p>web design, and print design services. Our team of experts is dedicated to delivering</p>
+            <p>visually stunning, impactful designs that help your brand stand out.</p>
         </div>
     </header>
 
